@@ -1,4 +1,4 @@
-
+//This function holds the basic information about the user account
 function Person(email, password) {
     this.email = email
     this.password = password
@@ -27,7 +27,7 @@ function Person(email, password) {
 current_user = "this should hold the object, so it doesn't have to go back through the user information"
 //accounts will store the objects with key-value pairs, the key will be their email
 const accounts = {}
-account["admin@csu.fullerton.edu"] = "Placeholder for person obj"
+accounts["admin@csu.fullerton.edu"] = "Placeholder for person obj"
 
 const admin = new Person("admin@csu.fullerton.edu", "csufadmin")
 
@@ -42,29 +42,35 @@ function test_password(password_input, user) {
         return false
     }
 }
-
+//this function will eventually add more but for now it just asks about the valid email
 function ask_info() {
     var temp_email = prompt("Please Enter a valid email: ")
-    return temp_email
 }
 
-var temp_string = "userinfo@csu.fullerton.edu"
-
-console.log(temp_string.length)
-console.log(temp_string[1])
-
-function verify_email() {
-    for (let i = 0; i < temp_string.length; i++) {
-        if ("@" != temp_string[i]) {
-            continue
-        } else {
-            temp_domain = temp_domain + temp_string[i] 
+//this function will verify the domain of an email address
+function verify_domain(email) {
+    email = String(email)
+    copy_domain = false
+    temp_domain = ""
+    for (let i = 0; i < email.length; i++) {
+        //goes until it finds the @ symbol this determines what the email domain is
+        if ("@" == email[i]) {
+            copy_domain = true
+        }
+        //when it finds the @, it should the rest of the email string to the temp_domain
+        if (copy_domain) {
+            temp_domain = temp_domain + email[i]
         }
     }
-    
-    if (temp_domain != "@csu.fullerton.edu") return false
+    //it now compares the domain to the correct domain @csu.fullerton.edu
+    if (temp_domain == "@csu.fullerton.edu") {
+        return true
+    }
+    //if it did not match then it should return false
+    return false
 }
 
-if (!verify_email()) {
-    "Please enter a valid csuf email"
-}
+//test passes the check for email domain
+var temp_string = "userinfo@csu.fullerton.edu"
+console.log(verify_domain(temp_string))
+//our verify domain function works as intended
