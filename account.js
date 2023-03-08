@@ -43,9 +43,9 @@ function test_password(password_input, user) {
     }
 }
 //this function will eventually add more but for now it just asks about the valid email
-function ask_info() {
-    var temp_email = prompt("Please Enter a valid email: ")
-}
+// function ask_info() {
+//     var temp_email = prompt("Please Enter a valid email: ")
+// }
 
 //this function will verify the domain of an email address
 function verify_domain(email) {
@@ -71,6 +71,7 @@ function verify_domain(email) {
 }
 
 //test passes the check for email domain
-var temp_string = "userinfo@csu.fullerton.edu"
-console.log(verify_domain(temp_string))
+//var temp_string = "userinfo@csu.fullerton.edu"
+//console.log(verify_domain(temp_string))
 //our verify domain function works as intended
+
