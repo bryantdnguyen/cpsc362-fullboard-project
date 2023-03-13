@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<!--
+This file contains the login website page
+It should get a username and password, and then it will try to find if there exists a user
+If they get correct password and username, they log in to their account
+If not they should be prompted to either input a correct output or to be directed to the sign up page
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,20 +28,22 @@
     <form>
         <div class = "container">
             <center><label for = "usrnm">Username </label>
-            <input type = "text" placeholder = "Enter Username" id = "username" required></center>;
+            <input type = "text" placeholder = "Enter Username" id = "username" required></center>
             <center><label for = "pswd">Password </label>
-            <input type = "password" placeholder = "Enter Password" id = "password" required></center>;
+            <input type = "password" placeholder = "Enter Password" id = "password" required></center>
             <center><input type = "button" id ="info_button" value = "Login"></center>
         </div>
     </form>
-    <script src = "account.js">
+    <!--I moved the account.js into SourceFiles, maybe we should move the html into another folder too but later-->
+    <script src = "SourceFiles/account.js">
         const user_username = document.getElementById('username')
         const user_password = document.getElementById('password')
         const user_button = document.getElementById('info_button')
         function onButtonClick() {
             //insert the account.js verify_domain()
-            account.verify_domain(user_username.value)
-            //currently prints the user
+            console.log(account.verify_domain(user_username.value))
+            //console.log("username is" + user_username)
+            //currently to prints the user
         }
         user_button.addEventListener('click', onButtonClick)
         

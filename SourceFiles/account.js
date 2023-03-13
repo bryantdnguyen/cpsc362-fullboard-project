@@ -26,8 +26,10 @@ function Person(email, password) {
 
 current_user = "this should hold the object, so it doesn't have to go back through the user information"
 //accounts will store the objects with key-value pairs, the key will be their email
+//compares the password contained in the account obj, if correct just keep track of that obj, we will use the information provided
+//right now we just have a
 const accounts = {}
-accounts["admin@csu.fullerton.edu"] = "Placeholder for person obj"
+accounts["admin@csu.fullerton.edu"] = "Placeholder for person obj"  //replace the value with a person obj, still in progress
 
 const admin = new Person("admin@csu.fullerton.edu", "csufadmin")
 
@@ -43,6 +45,7 @@ function test_password(password_input, user) {
     }
 }
 //this function will eventually add more but for now it just asks about the valid email
+//eventually it should change it to be the variable provided in html file
 // function ask_info() {
 //     var temp_email = prompt("Please Enter a valid email: ")
 // }
@@ -69,9 +72,4 @@ function verify_domain(email) {
     //if it did not match then it should return false
     return false
 }
-
-//test passes the check for email domain
-//var temp_string = "userinfo@csu.fullerton.edu"
-//console.log(verify_domain(temp_string))
-//our verify domain function works as intended
 
