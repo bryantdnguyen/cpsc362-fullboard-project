@@ -1,0 +1,51 @@
+<!--
+    THIS IS THE RESGISTER PAGE
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: orange;
+            color: blue
+        }
+        button {
+            background-color: blue;
+            color: white
+        }
+    </style>
+</head>
+<body>
+    <center><h1>FullBoard Login</h1></center>
+    <form>
+        <div class = "container">
+            <center><label for = "usrnm">Username </label>
+            <input type = "text" placeholder = "Enter Username" id = "username" required></center>
+            <center><label for = "pswd">Password </label>
+            <input type = "password" placeholder = "Enter Password" id = "password" required></center>
+            <center><input type = "button" id ="info_button" value = "Login"></center>
+            <center><a href="/login">Login</a></center>
+        </div>
+    </form>
+</body>
+-->
+
+<h1>Register</h1>
+<form action="/register" method = "POST">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email"required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password"required>
+    </div>
+    <button type="submit">Register</button>
+</form>
+<a href="/login">Login</a>
