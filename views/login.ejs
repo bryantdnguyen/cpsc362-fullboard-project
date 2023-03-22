@@ -1,18 +1,33 @@
 <!-- THIS IS THE LOGIN PAGE -->
-<h1>Login</h1>
+<style>
+    div {
+        margin-bottom: 15px;
+    }
+    label {
+        display: inline-block;
+        width: 60px;
+        text-align: right;
+    }
+    body {
+        background-color: orange;
+        color: blue
+    }
+    button {
+        background-color: blue;
+        color: white
+    }
+</style>
+
+<center><h1>FullBoard Login</h1></center>
 <form action="/login" method = "POST">
     <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name"required>
+        <center><label for="email">Email</label>
+        <input type="text" id="email" placeholder="Enter Email" name="email"required></center>
     </div>
     <div>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email"required>
+        <center><label for="password">Password</label>
+        <input type="text" id="password" placeholder="Enter Password" name="password"required></center>
     </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="text" id="password" name="password"required>
-    </div>
-    <button type="submit">Login</button>
+    <center><button type="submit">Login</button></center>
 </form>
-<a href="/register">Register</a>
+<center><a href="/register">Register</a></center>

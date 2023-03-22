@@ -9,7 +9,8 @@ app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    res.render('index.ejs', { name: 'TEST NAME'})
+    //res.render('index.ejs', { name: 'TEST NAME'})
+    res.render('login.ejs')
 })
 
 app.get('/login', (req, res) => {
