@@ -162,12 +162,11 @@
         console.log(verify_domain(user_username.value)) // this works
         console.log(verify_working(user_username.value, user_password.value))
         if (verify_domain(user_username.value)) {
-            usr_account=Person(user_username.value, user_password.value)
-            // these commented out functions are causing an error
-            // usr_account.changeFN(user_fname.value)
-            // usr_account.changeLN(user_lname.value)
-            // console.log(usr_account.info())
-            // console.log(window.location.href)
+            usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value))
+            // These functions work but are redundant to the current setup
+            //usr_account.changeFN(user_fname.value)
+            //usr_account.changeLN(user_lname.value)
+            console.log(usr_account.info())
             
         }
         //console.log("username is" + user_username)
