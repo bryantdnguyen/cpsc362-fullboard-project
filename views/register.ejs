@@ -74,11 +74,11 @@
 
 <script>
     //This function holds the basic information about the user account
-    function Person(email, password) {
+    function Person(email, password, fn="", ln="") {
         this.email = email
         this.password = password
-        this.fn = ""
-        this.ln = ""
+        this.fn = fn
+        this.ln = ln
         
         this.info = function() {
             return "user info:" + this.fn + " " + this.ln + " " + this.email + " " + this.password;
@@ -86,11 +86,9 @@
         //these functions all change the objects information
         this.changeFN = function(first_name) {
             this.fn = first_name
-            return "First Name: " + this.fn
         }
         this.changeLN = function(last_name) {
             this.ln = last_name
-            return "Last Name: " + this.ln
         }
         this.changeEM = function(email) {
             this.email = email
@@ -166,10 +164,10 @@
         if (verify_domain(user_username.value)) {
             usr_account=Person(user_username.value, user_password.value)
             // these commented out functions are causing an error
-            //usr_account.changeFN(user_fname.value)
-            //usr_account.changeLN(user_lname.value)
-            //console.log(usr_account.info())
-            console.log(window.location.href)
+            // usr_account.changeFN(user_fname.value)
+            // usr_account.changeLN(user_lname.value)
+            // console.log(usr_account.info())
+            // console.log(window.location.href)
             
         }
         //console.log("username is" + user_username)
