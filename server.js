@@ -28,4 +28,29 @@ app.get('/register', (req, res) => {
 app.post('/register', (req, res) => {
     req.body.email
 })
+
+app.get('/main', (req, res) => {
+    res.render('main.ejs')
+})
+
+app.get('/discussion-page', (req, res) => {
+    res.render('discussionpage.ejs')
+})
+
+app.get('/class1', (req, res) => {
+    res.render('class1.html')
+})
+
+app.get('/class2', (req, res) => {
+    res.render('class2.html')
+})
+
+app.get('/class3', (req, res) => {
+    res.render('class3.html')
+})
+
+app.get('/class4', (req, res) => {
+    res.render('class4.html')
+})
+
 app.listen(3050)
