@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(65, 65, 65);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+  }
+  
+h2 {
+    text-align: center;
+    color: white;
+  }
+
+h3 {
+    text-align: center;
+    color: white;
+  }
+
+  div {
+    height: 50px;
+    width: 75%;
+    background-color: orange;
+    margin: auto;
+  }
