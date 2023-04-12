@@ -28,6 +28,100 @@
         <center><label for="password">Password</label>
         <input type="text" id="password" placeholder="Enter Password" name="password"required></center>
     </div>
-    <center><button type="submit">Login</button></center>
+    <center><button type="submit" id="login_btn">Login</button></center>
 </form>
 <center><a href="/register">Register</a></center>
+
+<script>
+    //This function holds the basic information about the user account
+    function Person(email, password, fn="", ln="") {
+        this.email = email
+        this.password = password
+        this.fn = fn
+        this.ln = ln
+        
+        this.info = function() {
+            return "user info:" + this.fn + " " + this.ln + " " + this.email + " " + this.password;
+        }
+        //these functions all change the objects information
+        this.changeFN = function(first_name) {
+            this.fn = first_name
+        }
+        this.changeLN = function(last_name) {
+            this.ln = last_name
+        }
+        this.changeEM = function(email) {
+            this.email = email
+        }
+        this.changePW = function(password) {
+            this.password = password
+        }
+    }
+    
+    current_user = "this should hold the object, so it doesn't have to go back through the user information"
+    //accounts will store the objects with key-value pairs, the key will be their email
+    //compares the password contained in the account obj, if correct just keep track of that obj, we will use the information provided
+    //right now we just have a
+    const accounts = {}
+    accounts["admin@csu.fullerton.edu"] = "Placeholder for person obj"  //replace the value with a person obj, still in progress
+    const admin = new Person("admin@csu.fullerton.edu", "csufadmin")
+    console.log(admin)
+    console.log(accounts["admin@csu.fullerton.edu"])
+    console.log(admin.info())
+    
+    function test_password(password_input, user) {
+        if (password_input == user.password) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    //this function will verify the domain of an email address
+    function verify_domain(email) {
+        email = String(email)
+        copy_domain = false
+        temp_domain = ""
+        for (let i = 0; i < email.length; i++) {
+            //goes until it finds the @ symbol this determines what the email domain is
+            if ("@" == email[i]) {
+                copy_domain = true
+            }
+            //when it finds the @, it should the rest of the email string to the temp_domain
+            if (copy_domain) {
+                temp_domain = temp_domain + email[i]
+            }
+        }
+        //it now compares the domain to the correct domain @csu.fullerton.edu
+        if (temp_domain == "@csu.fullerton.edu") {
+            return true
+        }
+        //if it did not match then it should return false
+        return false
+    }
+    
+    //this is just to make sure that the form is actually working
+    function verify_working(email, password) {
+        return "Email = " + email + " Password = " + password
+    }
+
+    const user_username = document.getElementById('email')
+    const user_password = document.getElementById('password')
+    const user_button = document.getElementById('login_btn')
+
+    function onButtonClick() {
+        console.log(verify_domain(user_username.value))
+        console.log(verify_working(user_username.value, user_password.value))
+        if (verify_domain(user_username.value)) {
+            //usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value)
+            // These functions work but are redundant to the current setup
+            //usr_account.changeFN(user_fname.value)
+            //usr_account.changeLN(user_lname.value)
+            //console.log(usr_account.info())
+            setTimeout(function() {window.location.assign("/main")})
+        }
+    }
+    
+        user_button.addEventListener('click', onButtonClick)
+    
+</script>

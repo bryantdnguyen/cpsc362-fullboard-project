@@ -1,36 +1,3 @@
-<!--
-    THIS IS THE RESGISTER PAGE
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            background-color: orange;
-            color: blue
-        }
-        button {
-            background-color: blue;
-            color: white
-        }
-    </style>
-</head>
-<body>
-    <center><h1>FullBoard Login</h1></center>
-    <form>
-        <div class = "container">
-            <center><label for = "usrnm">Username </label>
-            <input type = "text" placeholder = "Enter Username" id = "username" required></center>
-            <center><label for = "pswd">Password </label>
-            <input type = "password" placeholder = "Enter Password" id = "password" required></center>
-            <center><input type = "button" id ="info_button" value = "Login"></center>
-            <center><a href="/login">Login</a></center>
-        </div>
-    </form>
-</body>
--->
 <style>
      div {
         margin-bottom: 15px;
@@ -117,12 +84,6 @@
         }
     }
     
-    //this function will eventually add more but for now it just asks about the valid email
-    //eventually it should change it to be the variable provided in html file
-    // function ask_info() {
-        //     var temp_email = prompt("Please Enter a valid email: ")
-    // }
-    
     //this function will verify the domain of an email address
     function verify_domain(email) {
         email = String(email)
@@ -157,20 +118,16 @@
     const user_password = document.getElementById('password')
     const user_button = document.getElementById('reg_btn')
     function onButtonClick() {
-        //insert the account.js verify_domain()
-        //console.log(account.verify_domain(user_username.value))
-        console.log(verify_domain(user_username.value)) // this works
+        console.log(verify_domain(user_username.value))
         console.log(verify_working(user_username.value, user_password.value))
         if (verify_domain(user_username.value)) {
-            usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value))
+            usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value)
             // These functions work but are redundant to the current setup
             //usr_account.changeFN(user_fname.value)
             //usr_account.changeLN(user_lname.value)
             console.log(usr_account.info())
-            
+            setTimeout(function() {window.location.assign("/login")})
         }
-        //console.log("username is" + user_username)
-        //currently to prints the user
     }
     
         user_button.addEventListener('click', onButtonClick)
