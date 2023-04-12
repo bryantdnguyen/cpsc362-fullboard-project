@@ -34,23 +34,23 @@ app.get('/main', (req, res) => {
 })
 
 app.get('/discussion-page', (req, res) => {
-    res.render('discussionpage.ejs')
+    res.render('discussion-page.ejs')
 })
 
 app.get('/class1', (req, res) => {
-    res.render('class1.html')
+    res.render('class1.ejs')
 })
 
 app.get('/class2', (req, res) => {
-    res.render('class2.html')
+    res.render('class2.ejs')
 })
 
 app.get('/class3', (req, res) => {
-    res.render('class3.html')
+    res.render('class3.ejs')
 })
 
 app.get('/class4', (req, res) => {
-    res.render('class4.html')
+    res.render('class4.ejs')
 })
 
 app.listen(3050)
