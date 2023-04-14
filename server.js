@@ -1,9 +1,17 @@
 // Logic to handle the ejs files (html files)
 // Command to run the server: npm run devStart (make sure its a bash terminal in VScode)
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
+const uri = "mongodb+srv://smelwani:X9Bf55WrpVLXICNC@csufapp.w50iy6b.mongodb.net/test"
+const userSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    email: String,
+    password: String,
+  });
+const User = mongoose.model('User', userSchema);
 
-const users = []
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -25,9 +33,25 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 
-app.post('/register', (req, res) => {
-    req.body.email
-})
+app.post('/register', async (req, res) => {
+    // Create a new User object using the form data
+    const user = new User({
+      firstName: req.body.fname,
+      lastName: req.body.lname,
+      email: req.body.email,
+      password: req.body.password,
+    });
+  
+    // Save the user to the database
+    try {
+      await user.save();
+      console.log('User saved to database:', user);
+      res.redirect('/login');
+    } catch (error) {
+      console.error(error);
+      res.send('Error registering user');
+    }
+  });
 
 app.get('/main', (req, res) => {
     res.render('main.ejs')
@@ -53,4 +77,17 @@ app.get('/class4', (req, res) => {
     res.render('class4.ejs')
 })
 
-app.listen(3050)
+async function connect() {
+    try {
+      await mongoose.connect(uri);
+      console.log("Connected to MongoDB");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  connect();
+
+app.listen(3050, () => {
+    console.log("Server started on port 3050");
+  });
