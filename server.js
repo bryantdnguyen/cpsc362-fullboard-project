@@ -25,9 +25,25 @@ app.get('/login', (req, res) => {
     res.render('login.ejs')
 })
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+      const user = await User.findOne({ email: email });
+      if (!user) {
+          res.status(400).send('Invalid email or password');
+          return;
+      }
+      if (user.password !== password) {
+          res.status(400).send('Invalid email or password');
+          return;
+      }
+      res.redirect('/main');
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal server error');
+  }
+});
 
-})
 
 app.get('/register', (req, res) => {
     res.render('register.ejs')

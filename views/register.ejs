@@ -18,22 +18,23 @@
 </style>
 
 <center><h1>Register</h1></center>
-<form action="/register" method = "POST">
+<form action="/register" method="POST">
+    <input type="hidden" id="current_user" name="current_user" value="">
     <div>
         <center><label for="name">First Name</label>
-        <input type="text" id="fname" placeholder="Enter First Name" name="name"required></center>
+        <input type="text" id="fname" placeholder="Enter First Name" name="fname" required></center>
     </div>
     <div>
         <center><label for="name">Last Name</label>
-        <input type="text" id="lname" placeholder="Enter Last Name" name="name"required></center>
+        <input type="text" id="lname" placeholder="Enter Last Name" name="lname" required></center>
     </div>
     <div>
         <center><label for="email">Email</label>
-        <input type="text" id="email" placeholder="Enter Email" name="email"required></center>
+        <input type="text" id="email" placeholder="Enter Email" name="email" required></center>
     </div>
     <div>
         <center><label for="password">Password</label>
-        <input type="text" id="password" placeholder="Enter Password" name="password"required></center>
+        <input type="text" id="password" placeholder="Enter Password" name="password" required></center>
     </div>
     <center><button type="submit" id="reg_btn">Register</button></center>
 </form>
@@ -64,7 +65,7 @@
             this.password = password
         }
     }
-    
+
     current_user = "this should hold the object, so it doesn't have to go back through the user information"
     //accounts will store the objects with key-value pairs, the key will be their email
     //compares the password contained in the account obj, if correct just keep track of that obj, we will use the information provided
@@ -118,17 +119,15 @@
     const user_password = document.getElementById('password')
     const user_button = document.getElementById('reg_btn')
     function onButtonClick() {
-        console.log(verify_domain(user_username.value))
-        console.log(verify_working(user_username.value, user_password.value))
-        if (verify_domain(user_username.value)) {
-            usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value)
-            // These functions work but are redundant to the current setup
-            //usr_account.changeFN(user_fname.value)
-            //usr_account.changeLN(user_lname.value)
-            console.log(usr_account.info())
-            setTimeout(function() {window.location.assign("/login")})
-        }
+    console.log(verify_domain(user_username.value))
+    console.log(verify_working(user_username.value, user_password.value))
+    if (verify_domain(user_username.value)) {
+        usr_account = new Person(user_username.value, user_password.value, user_fname.value, user_lname.value)
+        console.log(usr_account.info())
+        document.getElementById("current_user").value = JSON.stringify(usr_account)
+        document.forms[0].submit();
     }
+}
     
         user_button.addEventListener('click', onButtonClick)
     

@@ -110,18 +110,30 @@
     const user_button = document.getElementById('login_btn')
 
     function onButtonClick() {
-        console.log(verify_domain(user_username.value))
-        console.log(verify_working(user_username.value, user_password.value))
-        if (verify_domain(user_username.value)) {
-            //usr_account=new Person(user_username.value, user_password.value, user_fname.value, user_lname.value)
-            // These functions work but are redundant to the current setup
-            //usr_account.changeFN(user_fname.value)
-            //usr_account.changeLN(user_lname.value)
-            //console.log(usr_account.info())
-            setTimeout(function() {window.location.assign("/main")})
-        }
+    console.log(verify_domain(user_username.value))
+    console.log(verify_working(user_username.value, user_password.value))
+    if (verify_domain(user_username.value)) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/login');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    setTimeout(function() {
+                        window.location.assign("/main")
+                    });
+                } else {
+                    alert('Invalid email or password!');
+                }
+            }
+        };
+        xhr.send(JSON.stringify({
+            email: user_username.value,
+            password: user_password.value
+        }));
     }
-    
-        user_button.addEventListener('click', onButtonClick)
+}
+user_button.addEventListener('click', onButtonClick);
     
 </script>
