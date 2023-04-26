@@ -40,6 +40,10 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !email.endsWith('@csu.fullerton.edu')) {
+    res.status(400).send('Invalid email or password');
+    return;
+  }
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
@@ -56,6 +60,7 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 app.get('/register', (req, res) => {
   res.render('register.ejs');
