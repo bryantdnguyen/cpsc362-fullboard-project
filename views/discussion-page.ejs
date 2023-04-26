@@ -1,3 +1,21 @@
+<style>
+    body{
+        background-color: rgb(65, 65, 65);
+    }
+    h1{
+        color: white;
+    }
+    h2{
+        color: white;
+    }
+    p{
+        color: white;
+    }
+    label{
+        color: white;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +25,8 @@
     <h1>General Discussion Board</h1>
 
     <form method="POST" action="/discussion-page">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
         <label for="question">Ask a question:</label>
-        <input type="text" id="question" name="question"><br><br>
+        <textarea type="text" id="question" name="question"></textarea>
         <button type="submit">Submit</button>
     </form>
 
