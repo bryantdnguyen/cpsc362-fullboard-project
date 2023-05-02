@@ -67,20 +67,26 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  const user = new User({
-    firstName: req.body.fname,
-    lastName: req.body.lname,
-    email: req.body.email,
-    password: req.body.password,
-  });
-
-  try {
-    await user.save();
-    console.log('User saved to database:', user);
-    res.redirect('/login');
-  } catch (error) {
-    console.error(error);
-    res.send('Error registering user');
+  const {email} = req.body;
+  if (!email || !email.endsWith('@csu.fullerton.edu')) {
+    res.status(400).send('Invalid email or password');
+    return;
+  }
+  else{
+    const user = new User({
+      firstName: req.body.fname,
+      lastName: req.body.lname,
+      email: req.body.email,
+      password: req.body.password,
+    });
+    try {
+      await user.save();
+      console.log('User saved to database:', user);
+      res.redirect('/login');
+    } catch (error) {
+      console.error(error);
+      res.send('Error registering user');
+    }
   }
 });
 
