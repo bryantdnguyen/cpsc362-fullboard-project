@@ -31,7 +31,13 @@
         <br></br>
         <button type="submit">Submit</button>
     </form>
-    <h2>Previously Asked Questions:</h2>
+    
+<% if (questions && questions.length > 0) { %>
+        <h2>Previously Asked Questions:</h2>
+        <% questions.forEach(function(question) { %>
+            <p><%= question.question %> - asked by <%= firstName && lastName ? firstName + ' ' + lastName : 'anonymous' %></p>
+        <% }) %>
+    <% } %>
 
 </body>
 </html> 
