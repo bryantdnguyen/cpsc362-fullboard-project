@@ -116,7 +116,7 @@ app.get('/discussion-page', async (req, res) => {
 
 
 app.post('/discussion-page', async (req, res) => {
-  const question = new Question({
+    const question = new Question({
     question: req.body.question,
     date: new Date(),
   });
@@ -130,9 +130,40 @@ app.post('/discussion-page', async (req, res) => {
   }
 });
 
-app.get('/class1', (req, res) => {
-    res.render('class1.ejs')
-})
+app.get('/class1', async (req, res) => {
+    //res.render('class1.ejs')
+    try {
+      const questions = await Question.find({}).sort({ date: -1 }).exec();
+      const user = await User.findOne({ email: req.query.email });
+      let firstName = '';
+      let lastName = '';
+      if (user) {
+        firstName = user.firstName;
+        lastName = user.lastName;
+        console.log(`Retrieved user: ${user}`);
+        console.log(`First name: ${firstName}, Last name: ${lastName}`);
+      }
+      res.render('class1.ejs', { questions: questions, email: req.query.email, firstName: firstName, lastName: lastName });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal server error');
+    }
+});
+
+app.post('/class1', async (req, res) => {
+    const question = new Question({
+    question: req.body.question,
+    date: new Date(),
+  });
+
+  try {
+    await question.save();
+    res.redirect('/class1');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
 app.get('/class2', (req, res) => {
     res.render('class2.ejs')
