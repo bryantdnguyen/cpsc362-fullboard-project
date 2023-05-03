@@ -15,17 +15,45 @@ const userSchema = new mongoose.Schema({
 });
 
 // Define the Question schema
-const questionSchema = new mongoose.Schema({
+const discussionSchema = new mongoose.Schema({
   question: String,
-  date: Date,
-  email: String,
 });
 
-// Create the User model
+const class1Schema = new mongoose.Schema({
+  question: String,
+});
+
+const class2Schema = new mongoose.Schema({
+  question: String,
+});
+
+const class3Schema = new mongoose.Schema({
+  question: String,
+});
+
+const class4Schema = new mongoose.Schema({
+  question: String,
+});
+
+const class5Schema = new mongoose.Schema({
+  question: String,
+});
+
+// Create the User Schema
 const User = mongoose.model('User', userSchema);
 
-// Create the Question model
-const Question = mongoose.model('Question', questionSchema);
+// Create the all question Schemas
+const Discussion = mongoose.model('Discussion', discussionSchema);
+
+const class1 = mongoose.model('class1', class1Schema);
+
+const class2 = mongoose.model('class2', class2Schema);
+
+const class3 = mongoose.model('class3', class3Schema);
+
+const class4 = mongoose.model('class4', class4Schema);
+
+const class5 = mongoose.model('class5', class5Schema);
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -97,7 +125,7 @@ app.get('/main', (req, res) => {
 // Modify the discussion-page route
 app.get('/discussion-page', async (req, res) => {
   try {
-    const questions = await Question.find({}).sort({ date: -1 }).exec();
+    const questions = await Discussion.find({}).sort({ date: -1 }).exec();
     const user = await User.findOne({ email: req.query.email });
     let firstName = '';
     let lastName = '';
@@ -116,7 +144,7 @@ app.get('/discussion-page', async (req, res) => {
 
 
 app.post('/discussion-page', async (req, res) => {
-    const question = new Question({
+    const question = new Discussion({
     question: req.body.question,
     date: new Date(),
   });
@@ -132,7 +160,7 @@ app.post('/discussion-page', async (req, res) => {
 
 app.get('/class1', async (req, res) => {
     try {
-      const questions = await Question.find({}).sort({ date: -1 }).exec();
+      const questions = await class1.find({}).sort({ date: -1 }).exec();
       const user = await User.findOne({ email: req.query.email });
       let firstName = '';
       let lastName = '';
@@ -150,7 +178,7 @@ app.get('/class1', async (req, res) => {
 });
 
 app.post('/class1', async (req, res) => {
-    const question = new Question({
+    const question = new class1({
     question: req.body.question,
     date: new Date(),
   });
@@ -166,7 +194,7 @@ app.post('/class1', async (req, res) => {
 
 app.get('/class2', async (req, res) => {
   try {
-    const questions = await Question.find({}).sort({ date: -1 }).exec();
+    const questions = await class2.find({}).sort({ date: -1 }).exec();
     const user = await User.findOne({ email: req.query.email });
     let firstName = '';
     let lastName = '';
@@ -184,7 +212,7 @@ app.get('/class2', async (req, res) => {
 });
 
 app.post('/class2', async (req, res) => {
-  const question = new Question({
+  const question = new class2({
   question: req.body.question,
   date: new Date(),
 });
@@ -200,7 +228,7 @@ try {
 
 app.get('/class3', async (req, res) => {
   try {
-    const questions = await Question.find({}).sort({ date: -1 }).exec();
+    const questions = await class3.find({}).sort({ date: -1 }).exec();
     const user = await User.findOne({ email: req.query.email });
     let firstName = '';
     let lastName = '';
@@ -218,7 +246,7 @@ app.get('/class3', async (req, res) => {
 });
 
 app.post('/class3', async (req, res) => {
-  const question = new Question({
+  const question = new class3({
   question: req.body.question,
   date: new Date(),
 });
@@ -234,7 +262,7 @@ try {
 
 app.get('/class4', async (req, res) => {
   try {
-    const questions = await Question.find({}).sort({ date: -1 }).exec();
+    const questions = await class4.find({}).sort({ date: -1 }).exec();
     const user = await User.findOne({ email: req.query.email });
     let firstName = '';
     let lastName = '';
@@ -252,7 +280,7 @@ app.get('/class4', async (req, res) => {
 });
 
 app.post('/class4', async (req, res) => {
-  const question = new Question({
+  const question = new class4({
   question: req.body.question,
   date: new Date(),
 });
