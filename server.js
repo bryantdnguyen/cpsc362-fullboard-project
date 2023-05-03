@@ -35,10 +35,6 @@ const class4Schema = new mongoose.Schema({
   question: String,
 });
 
-const class5Schema = new mongoose.Schema({
-  question: String,
-});
-
 // Create the User Schema
 const User = mongoose.model('User', userSchema);
 
@@ -52,8 +48,6 @@ const class2 = mongoose.model('class2', class2Schema);
 const class3 = mongoose.model('class3', class3Schema);
 
 const class4 = mongoose.model('class4', class4Schema);
-
-const class5 = mongoose.model('class5', class5Schema);
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
