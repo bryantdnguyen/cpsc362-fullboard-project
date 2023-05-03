@@ -4,12 +4,17 @@
     }
     
     h1 {
-        text-align: center;
         color: white;
     }
     
     h2 {
-        text-align: center;
+        color: white;
+    }
+    
+    label {
+        color: white;
+    }
+    p{
         color: white;
     }
 </style>
@@ -20,10 +25,22 @@
     <title>Class 3</title>
 </head>
 <body>
-    <h1>Welcome to class 3's discussion page!</h1>
-    <h2>Feel free to ask any questions about the class here: </h2>
-    <center><textarea name="question" id="question" cols="75" rows="7"></textarea></center>
-    <center><button type="submit">Submit</button></center>
+    <h1>Welcome to Class 3's discussion page!</h1>
+    <h2>Feel free to ask any questions about the class here:</h2>
+    <form method="POST" action="/class3">
+        <label for="question">Ask a question:</label>
+        <br></br>
+        <textarea type="text" id="question" name="question" rows="5" cols="45"></textarea>
+        <br></br>
+        <button type="submit">Submit</button>
+    </form>
+    
+<% if (questions && questions.length > 0) { %>
+        <h2>Previously Asked Questions:</h2>
+        <% questions.forEach(function(question) { %>
+            <p><%= question.question %> - asked by <%= firstName && lastName ? firstName + ' ' + lastName : 'anonymous' %></p>
+        <% }) %>
+    <% } %>
 
 </body>
 </html> 
